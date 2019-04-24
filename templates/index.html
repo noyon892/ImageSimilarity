@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <title>Index</title>
+{% endblock %}
+
+
+{% block body %}
+
+    {% for department in departments %}
+        <h1>{{ department.department_name }}</h1>
+        {% for person in department.person_set.all %}
+            <h3>{{ person.name }}</h3>
+            <a href="{% url 'person' user_id=person.id %}"> <img src="{{ person.image.url }}" height="200px" width="200px" border="3px solid #d9d9d9" style="border-radius: 50%;"></a>
+        {% endfor %}
+    {% endfor %}
+
+{#    {% for person in persons %}#}
+{#        <h1>{{ person.id }}. {{ person.name }}</h1>#}
+{#        <a href="{% url 'person' user_id=person.id %}"> <img src="{{ person.image.url }}" height="200px" width="200px" border="3px solid #d9d9d9" style="border-radius: 50%;"></a>#}
+{#        <p>Email: {{ person.email }}</p>#}
+{#        <p>Phone: {{ person.phone_no }}</p>#}
+{#        <p>Date Of Birth: {{ person.dob }}</p>#}
+{#        <p>Profession: {{ person.profession }}</p>#}
+{#        <p>Address: {{ person.address }}</p>#}
+{#        <br>#}
+{#    {% endfor %}#}
+{% endblock %}
